@@ -12,7 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity(name = "User")
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -32,21 +32,26 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "birthday", nullable = false)
+    @Column(name = "birthday", columnDefinition = "DATE", nullable = false)
     private Date birthday;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_role", nullable = false)
     private UserRole userRole;
 
-    @Column(name = "status")
-    private boolean userStatus;
+    @Column(name = "is_user_free", nullable = false)
+    private boolean isUserFree;
 
     @Column(name = "van_number")
     private Integer vanNumber;
 
     @Column(name = "number_of_transports_done", nullable = false)
     private Integer numberOfTransportsDone = 0;
+
+    @ManyToOne
+    @JoinColumn(name="company_work_for_id", nullable=false)
+    private Company company;
 }

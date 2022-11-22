@@ -11,13 +11,8 @@ import org.mapstruct.Mappings;
 @Mapper(uses = {AddressDtoEntity.class}, componentModel = "spring")
 public interface UserDtoEntity {
 
-    @Mappings({
-            @Mapping(source = "user.address", target = "addressDto")
-    })
+
     UserDto userToDto(User user);
 
-    @Mappings({
-            @Mapping(source = "createUserDto.addressDto", target = "address")
-    })
     User userToEntity(CreateUserDto createUserDto);
 }
